@@ -28,4 +28,6 @@ p0 = min(points, key=lambda p: (p.y, p.x))
 ```
 가장 작은 y좌표인 점을 기준점으러 삼는디.(가장 작은 y좌표인 점이 여러개 있으면 x좌표가 작은 점)
 
-
+```python
+points.sort(key=lambda p: (math.atan2(p.y - p0.y, p.x - p0.x), (p.y - p0.y) ** 2 + (p.x - p0.x) ** 2))
+```
