@@ -66,3 +66,35 @@ def cross(p1: Point, p2: Point, p3: Point) -> float:
 남은 점들로 볼록 껍질을 생성한다.
 
 -----
+
+# Jarvis March 알고리즘(자비스 행진 알고리즘)
+
+* x 좌표가 가장 작은 점을 찾고, 만약 x 좌표가 같은 점들이 여러 개 있다면 y 좌표가 가장 작은 점을 선택한다.
+```python
+def leftmost_point(points):
+    min_point = points[0]
+    for p in points[1:]:
+        if p.x < min_point.x or (p.x == min_point.x and p.y < min_point.y):
+            min_point = p
+    return min_point
+```
+
+* 세 점의 방향을 계산한다.
+```python
+def orientation(p, q, r):
+    return (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y)
+```
+
+* 'next_point가 현재 점과 같거나, point, next_point, q 세 점이 반시계 방향이면 next_point를 q로 갱신한다.
+
+```python
+while True:
+    hull.append(point)
+    next_point = points[0]
+    for q in points[1:]:
+        if next_point == point or orientation(point, next_point, q) > 0:
+            next_point = q
+    point = next_point
+    if point == start:
+        break
+```
