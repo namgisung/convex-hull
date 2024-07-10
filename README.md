@@ -21,7 +21,7 @@
 
 ------
 
-# Graham Scan 알고리즘
+# Graham Scan 알고리즘(그래엄 스캔 알고리즘)
 
 * 가장 작은 y좌표인 점을 기준점으러 삼는디.(가장 작은 y좌표인 점이 여러개 있으면 x좌표가 작은 점)
 
@@ -36,4 +36,33 @@ points.sort(key=lambda p: (math.atan2(p.y - p0.y, p.x - p0.x), (p.y - p0.y) ** 2
 ```
 
 1. 각도: math.atan2(p.y - p0.y, p.x - p0.x) 함수는 p0과 점 p 사이의 각도를 계산한다.
-2. 거리: 각도가 같을 경우에는 p0으로부터의 거리를 기준으로 정렬한다. 거리 계산은 피타고라스 정리를 사용하여 (p.y - p0.y) ** 2 + (p.x - p0.x) ** 2로 한다다
+2. 거리: 각도가 같을 경우에는 p0으로부터의 거리를 기준으로 정렬한다. 거리 계산은 피타고라스 정리를 사용하여 (p.y - p0.y) ** 2 + (p.x - p0.x) ** 2로 한다
+
+* 정렬된 점들 중에서 p0과 각도가 가장 작은점을 볼록 껍질의 초기 점으로 설정합니다
+
+```python
+hull = [p0, points[1]]
+```
+
+* 세 점 사이의 외적(cross product)을 계산하여, 세 점이 시계 방향, 반시계 방향, 직선상에 있는지를 판별한다.
+
+```python
+for i in range(2, len(points)):
+    while len(hull) > 1 and cross(hull[-2], hull[-1], points[i]) <= 0:
+        hull.pop()
+    hull.append(points[i])
+```
+
+* 현재 점이 시계 방향으로 돌거나 직선 상에 있을 때 그 점을 제거한다.
+```python
+while len(hull) > 1 and cross(hull[-2], hull[-1], points[i]) <= 0:
+```
+
+* 외적 구하는 코드
+```python
+def cross(p1: Point, p2: Point, p3: Point) -> float:
+    return (p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x)
+```
+남은 점들로 볼록 껍질을 생성한다.
+
+-----
