@@ -21,8 +21,11 @@
 
 ------
 
-= 
+# Graham Scan 알고리즘
 
 ```python
-print()
+p0 = min(points, key=lambda p: (p.y, p.x))
 ```
+가장 작은 y좌표인 점을 기준점으러 삼는디.(가장 작은 y좌표인 점이 여러개 있으면 x좌표가 작은 점)
+
+
