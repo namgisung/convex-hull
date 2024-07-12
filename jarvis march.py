@@ -17,7 +17,6 @@ class Point:
     def __repr__(self):
         return f"Point({self.x}, {self.y})"
 
-# Generate random points
 num_points = 20
 points = [Point(random.uniform(-10, 10), random.uniform(-10, 10)) for _ in range(num_points)]
 
