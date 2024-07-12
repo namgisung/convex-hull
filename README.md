@@ -81,8 +81,8 @@ def leftmost_point(points):
 
 * 세 점의 방향을 계산한다.
 ```python
-def orientation(p, q, r):
-    return (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y)
+def cross(o, a, b):
+    return (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x)
 ```
 
 * 'next_point가 현재 점과 같거나, point, next_point, q 세 점이 반시계 방향이면 next_point를 q로 갱신한다.
