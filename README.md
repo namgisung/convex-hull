@@ -92,7 +92,7 @@ while True:
     hull.append(point)
     next_point = points[0]
     for q in points[1:]:
-        if next_point == point or orientation(point, next_point, q) > 0:
+        if next_point == point or cross(point, next_point, q) > 0:
             next_point = q
     point = next_point
     if point == start:
