@@ -1,3 +1,4 @@
+import math
 import random
 import matplotlib.pyplot as plt
 
@@ -31,8 +32,8 @@ def jarvis_march(points):
                 min_point = p
         return min_point
 
-    def orientation(p, q, r):
-        return (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y)
+    def cross(p, q, r):
+        return (q.x - p.x) * (r.y - q.y) - (q.x - p.x) * (r.y - q.y)
 
     hull = []
     start = leftmost_point(points)
@@ -42,7 +43,7 @@ def jarvis_march(points):
         hull.append(point)
         next_point = points[0]
         for q in points[1:]:
-            if next_point == point or orientation(point, next_point, q) > 0:
+            if next_point == point or cross(point, next_point, q) > 0:
                 next_point = q
         point = next_point
         if point == start:
