@@ -24,7 +24,9 @@
 
 # Graham Scan 알고리즘(그래엄 스캔 알고리즘)
 
-* 가장 작은 y좌표인 점을 기준점으러 삼는디.(가장 작은 y좌표인 점이 여러개 있으면 x좌표가 작은 점)
+* Graham Scan 알고리즘은 평면 상의 점들 집합에 대해 볼록 다각형의 경계를 찾는 알고리즘이다.
+
+* 가장 작은 y좌표인 점을 기준점으로 삼는디.(가장 작은 y좌표인 점이 여러개 있으면 x좌표가 작은 점)
 
 ```python
 p0 = min(points, key=lambda p: (p.y, p.x))
@@ -70,6 +72,8 @@ def cross(p1: Point, p2: Point, p3: Point) -> float:
 
 # Jarvis March 알고리즘(자비스 행진 알고리즘)
 
+* Jarvis March 알고리즘은 평면 상의 점들 집합에 대해 볼록 다각형의 경계를 찾는 알고리즘이다.
+
 * x 좌표가 가장 작은 점을 찾고, 만약 x 좌표가 같은 점들이 여러 개 있다면 y 좌표가 가장 작은 점을 선택한다.
 ```python
 def leftmost_point(points):
@@ -80,7 +84,7 @@ def leftmost_point(points):
     return min_point
 ```
 
-* 세 점의 방향을 계산한다.
+* 외적을 구하는 코드
 ```python
 def cross(o, a, b):
     return (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x)
