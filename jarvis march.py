@@ -1,7 +1,5 @@
-import math
 import random
 import matplotlib.pyplot as plt
-
 
 class Point:
     def __init__(self, x, y):
@@ -19,10 +17,9 @@ class Point:
     def __repr__(self):
         return f"Point({self.x}, {self.y})"
 
-
+# Generate random points
 num_points = 20
 points = [Point(random.uniform(-10, 10), random.uniform(-10, 10)) for _ in range(num_points)]
-
 
 def jarvis_march(points):
     def leftmost_point(points):
@@ -32,8 +29,8 @@ def jarvis_march(points):
                 min_point = p
         return min_point
 
-    def cross(p, q, r):
-        return (q.x - p.x) * (r.y - q.y) - (q.x - p.x) * (r.y - q.y)
+    def cross(o, a, b):
+        return (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x)
 
     hull = []
     start = leftmost_point(points)
@@ -42,15 +39,14 @@ def jarvis_march(points):
     while True:
         hull.append(point)
         next_point = points[0]
-        for q in points[1:]:
-            if next_point == point or cross(point, next_point, q) > 0:
+        for q in points:
+            if next_point == point or cross(point, next_point, q) < 0:
                 next_point = q
         point = next_point
         if point == start:
             break
 
     return hull
-
 
 def plot_hull(points, hull):
     plt.figure()
